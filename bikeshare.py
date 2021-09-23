@@ -21,6 +21,7 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city = ''
     validCities = ['chicago', 'new york city', 'washington']
+    #check thta the input is valid
     while(city not in validCities):
         city = input('Please enter name of the city to analyze (chicago, new york city, washington) \n').lower()
 
@@ -182,14 +183,14 @@ def main():
         trip_duration_stats(df)
         user_stats(df,city)
 
-
+        #ask the user if he wants to see raw data
         rawData = input('\nWould you like to see raw data? Enter yes or no.\n')
         i=0
         while(rawData.lower() == 'yes'):
             print(tabulate(df.iloc[np.arange(0+i,5+i)], headers ="keys"))
             i+=5
             rawData = input('\nWould you like to see raw data? Enter yes or no.\n')
-        
+        #ask the user if he wants to restart the script
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
