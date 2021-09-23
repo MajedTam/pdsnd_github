@@ -2,7 +2,7 @@ import time
 import pandas as pd
 import numpy as np
 import datetime
-import tabulate
+from tabulate import tabulate
 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
@@ -144,7 +144,7 @@ def trip_duration_stats(df):
     print('-'*40)
 
 
-def user_stats(df):
+def user_stats(df,city):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
@@ -154,17 +154,17 @@ def user_stats(df):
     print("The count of subscribers: "+str(df['User Type'].value_counts().iloc[0])+'\n')
     print("The count of customers: "+str(df['User Type'].value_counts().iloc[1])+'\n')
 
+    if(city!='washington'):
+        # TO DO: Display counts of gender
+        print("The count of males: "+str(df['Gender'].value_counts().iloc[0])+'\n')
+        print("The count of females: "+str(df['Gender'].value_counts().iloc[1])+'\n')
 
-    # TO DO: Display counts of gender
-    print("The count of males: "+str(df['Gender'].value_counts().iloc[0])+'\n')
-    print("The count of females: "+str(df['Gender'].value_counts().iloc[1])+'\n')
 
 
-
-    # TO DO: Display earliest, most recent, and most common year of birth
-    print("The earliest year of birth: "+str(int(df['Birth Year'].min()))+'\n')
-    print("The most recent year of birth: "+str(int(df['Birth Year'].max()))+'\n')
-    print("The most common year of birth: "+str(int(df['Birth Year'].mode().iloc[0])))
+        # TO DO: Display earliest, most recent, and most common year of birth
+        print("The earliest year of birth: "+str(int(df['Birth Year'].min()))+'\n')
+        print("The most recent year of birth: "+str(int(df['Birth Year'].max()))+'\n')
+        print("The most common year of birth: "+str(int(df['Birth Year'].mode().iloc[0])))
 
 
 
@@ -180,11 +180,11 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-        user_stats(df)
+        user_stats(df,city)
 
 
         rawData = input('\nWould you like to see raw data? Enter yes or no.\n')
-        i=5
+        i=0
         while(rawData.lower() == 'yes'):
             print(tabulate(df.iloc[np.arange(0+i,5+i)], headers ="keys"))
             i+=5
@@ -194,9 +194,6 @@ def main():
         if restart.lower() != 'yes':
             break
         
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
-        if restart.lower() != 'yes':
-            break
 
 
 if __name__ == "__main__":
