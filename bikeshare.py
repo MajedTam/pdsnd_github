@@ -190,7 +190,7 @@ def main():
             print(tabulate(df.iloc[np.arange(0+i,5+i)], headers ="keys"))
             i+=5
             rawData = input('\nWould you like to see raw data? Enter yes or no.\n')
-        
+        #ask the user if he wants to restart the script
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
