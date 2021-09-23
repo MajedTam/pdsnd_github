@@ -182,7 +182,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-
+        #ask the user if he wants to see raw data
         rawData = input('\nWould you like to see raw data? Enter yes or no.\n')
         i=5
         while(rawData.lower() == 'yes'):
